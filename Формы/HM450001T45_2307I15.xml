@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ZL_LIST>
+  <ZGLV>
+    <VERSION>2.2</VERSION>
+    <DATA>2023-07-09</DATA>
+    <FILENAME>HM450001T45_2307I15</FILENAME>
+  </ZGLV>
+  <SCHET>
+    <CODE>18730</CODE>
+    <CODE_MO>450001</CODE_MO>
+    <YEAR>23</YEAR>
+    <MONTH>07</MONTH>
+  </SCHET>
+  <ZAP>
+    <N_ZAP>17</N_ZAP>
+    <PR_NOW>0</PR_NOW>
+    <PACIENT>
+      <ID_PAC>z</ID_PAC>
+      <VPOLIS>z</VPOLIS>
+      <MPOLIS>z</MPOLIS>
+      <ST_OKATO>z</ST_OKATO>
+      <NOVOR>z</NOVOR>
+    </PACIENT>
+    <SLUCH>
+      <IDCASE>z</IDCASE>
+      <DATE_1>09.07.2023</DATE_1>
+      <DATE_2>09.07.2023</DATE_2>
+      <USL_OK>z</USL_OK>
+    </SLUCH>
+  </ZAP>
+</ZL_LIST>

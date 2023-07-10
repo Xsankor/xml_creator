@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Xml.Linq;
 using System.Text.Json;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 
 
 namespace WinFormsApp1
@@ -27,12 +28,19 @@ namespace WinFormsApp1
 
         private JsonBody? jsonBody;
 
+        string filePath;
+
         public Form1()
         {
             InitializeComponent();
+            jsonBody = new JsonBody();
 
             path = Path.Combine(Environment.CurrentDirectory, "setting.json");
-            jsonString = File.ReadAllText(path);
+
+            if (File.Exists(path))
+                jsonString = File.ReadAllText(path);
+            else 
+                jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonBody);
 
             jsonBody = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonBody>(jsonString);
 
@@ -48,14 +56,8 @@ namespace WinFormsApp1
             countOperation = jsonBody.countOperations;
 
             dataGridView1.RowCount = 13;
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            CreateDocument(out documentName);
-            CreateDocument_(out documentName_);
-            CreateBodyDocument();
-            SaveDocument();
+            filePath = jsonBody.fileNamePath;
         }
 
         private void CreateDocument(out string documentName)
@@ -124,16 +126,16 @@ namespace WinFormsApp1
         {
             AddToTable();
 
-            for (int i = 0; i < listData_tabPage1.Count; ++i) 
+            for (int i = 0; i < listData_tabPage1.Count; ++i)
             {
                 CreateBlock(i);
-            } 
+            }
 
-            for(int i = 0; i < listData_tabPage2.Count; ++i) 
+            for (int i = 0; i < listData_tabPage2.Count; ++i)
             {
                 CreateBlock_(i);
             }
-            
+
             listData_tabPage1.Clear();
             listData_tabPage2.Clear();
         }
@@ -142,7 +144,7 @@ namespace WinFormsApp1
         {
             if (listData_tabPage1.Count == 0 || listData_tabPage1[0].Count == 0) return;
 
-            for (int i = 0; i < listData_tabPage1.Count; ++i) 
+            for (int i = 0; i < listData_tabPage1.Count; ++i)
             {
                 for (int j = 0; j < listData_tabPage1[0].Count; ++j)
                 {
@@ -153,9 +155,9 @@ namespace WinFormsApp1
 
         public void IncreaseRows()
         {
-            if(dataGridView1.RowCount <= countPatients)
-            for(int i = 0; i < countPatients - dataGridView1.RowCount; ++i)
-                dataGridView1.Rows.Add();
+            if (dataGridView1.RowCount <= countPatients)
+                for (int i = 0; i < countPatients - dataGridView1.RowCount; ++i)
+                    dataGridView1.Rows.Add();
         }
 
         private void CreateBlock(int index)
@@ -206,7 +208,7 @@ namespace WinFormsApp1
             XElement fam = new XElement("FAM", listData_tabPage2[index][0]);
             XElement im = new XElement("IM", listData_tabPage2[index][1]);
             XElement ot = new XElement("OT", listData_tabPage2[index][2]);
-            XElement w = new XElement("W", listData_tabPage2[index][3]);
+            XElement w = new XElement("W", listData_tabPage2[index][3] == "Ì" ? 1 : 2);
             XElement dr = new XElement("DR", listData_tabPage2[index][4]);
             XElement doctype = new XElement("DOCTYPE", listData_tabPage2[index][5]);
             XElement docser = new XElement("DOCSER", listData_tabPage2[index][6]);
@@ -237,20 +239,12 @@ namespace WinFormsApp1
 
         private void SaveDocument()
         {
-            xdoc.Save($"{documentName}.xml");
-            xdoc_.Save($"{documentName_}.xml");
+            xdoc.Save($"{filePath}\\{documentName}.xml");
+            xdoc_.Save($"{filePath}\\{documentName_}.xml");
+
+            MessageBox.Show($"{filePath}\\{documentName}.xml");
 
             SaveCurrentInfo();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form2 addPacient = new Form2();
-            addPacient.ShowDialog();
-            if (listData_tabPage1.Count > 0)
-            {
-                AddToTable();
-            }
         }
 
         private async void SaveCurrentInfo()
@@ -266,6 +260,39 @@ namespace WinFormsApp1
         {
             countPatients = jsonBody.countPatients;
             countOperation = jsonBody.countOperations;
+        }
+
+        private void îòêðûòüÌåñòîÕðàíåíèÿToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", filePath);
+        }
+
+        private void çàäàòüÏàïêóÑîõðàíåíèÿToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // ïîëó÷àåì âûáðàííûé ôàéë
+            filePath = folderBrowserDialog1.SelectedPath;
+
+            jsonBody.fileNamePath = filePath;
+            jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonBody);
+            File.WriteAllText(path, jsonString);
+        }
+
+        private void äîáàâèòüÇàïèñüToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 addPacient = new Form2();
+            addPacient.ShowDialog();
+            if (listData_tabPage1.Count > 0)
+                AddToTable();
+        }
+
+        private void ñãåíåðèðîâàòüXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateDocument(out documentName);
+            CreateDocument_(out documentName_);
+            CreateBodyDocument();
+            SaveDocument();
         }
     }
 }

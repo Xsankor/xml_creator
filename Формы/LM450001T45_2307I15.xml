@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PERS_LIST>
+  <ZGLV>
+    <VERSION>2.2</VERSION>
+    <DATA>2023-07-09</DATA>
+    <FILENAME>HM450001T45_2307I15</FILENAME>
+    <FILENAME1>LM450001T45_2307I15</FILENAME1>
+  </ZGLV>
+  <PERS>
+    <ID_PAC>z</ID_PAC>
+    <FAM>x</FAM>
+    <IM>x</IM>
+    <OT>x</OT>
+    <W>1</W>
+    <DR>09.07.2023</DR>
+    <DOCTYPE>x</DOCTYPE>
+    <DOCSER>x</DOCSER>
+    <DOCNUM>x</DOCNUM>
+    <SNILS>x</SNILS>
+    <OKATOG>x</OKATOG>
+    <OKATOP>x</OKATOP>
+    <KLADRG>x</KLADRG>
+    <KLADRP>x</KLADRP>
+  </PERS>
+</PERS_LIST>

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
             dataGridView1 = new DataGridView();
             N_ZAP = new DataGridViewTextBoxColumn();
             PR_NOV = new DataGridViewTextBoxColumn();
@@ -42,29 +41,27 @@
             DATE_2 = new DataGridViewTextBoxColumn();
             USL_OK = new DataGridViewTextBoxColumn();
             button2 = new Button();
+            folderBrowserDialog1 = new FolderBrowserDialog();
+            menuStrip1 = new MenuStrip();
+            местоХраненияToolStripMenuItem = new ToolStripMenuItem();
+            открытьМестоХраненияToolStripMenuItem = new ToolStripMenuItem();
+            задатьПапкуСохраненияToolStripMenuItem = new ToolStripMenuItem();
+            добавитьЗаписьToolStripMenuItem = new ToolStripMenuItem();
+            сгенерироватьXMLToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.Location = new Point(527, 397);
-            button1.Name = "button1";
-            button1.Size = new Size(107, 41);
-            button1.TabIndex = 0;
-            button1.Text = "Сгенерировать XML";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { N_ZAP, PR_NOV, ID_PAC, VPOLIS, NPOLIS, ST_OKATO, NOVOR, IDCASE, DATE_1, DATE_2, USL_OK });
-            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Location = new Point(12, 27);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(622, 367);
+            dataGridView1.Size = new Size(745, 367);
             dataGridView1.TabIndex = 1;
             // 
             // N_ZAP
@@ -135,31 +132,74 @@
             // 
             // button2
             // 
-            button2.Location = new Point(12, 397);
+            button2.Location = new Point(0, 0);
             button2.Name = "button2";
-            button2.Size = new Size(100, 41);
-            button2.TabIndex = 2;
-            button2.Text = "Добавить запись";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 8;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { местоХраненияToolStripMenuItem, добавитьЗаписьToolStripMenuItem, сгенерироватьXMLToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(769, 24);
+            menuStrip1.TabIndex = 7;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // местоХраненияToolStripMenuItem
+            // 
+            местоХраненияToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { открытьМестоХраненияToolStripMenuItem, задатьПапкуСохраненияToolStripMenuItem });
+            местоХраненияToolStripMenuItem.Name = "местоХраненияToolStripMenuItem";
+            местоХраненияToolStripMenuItem.Size = new Size(109, 20);
+            местоХраненияToolStripMenuItem.Text = "Место хранения";
+            // 
+            // открытьМестоХраненияToolStripMenuItem
+            // 
+            открытьМестоХраненияToolStripMenuItem.Name = "открытьМестоХраненияToolStripMenuItem";
+            открытьМестоХраненияToolStripMenuItem.Size = new Size(224, 22);
+            открытьМестоХраненияToolStripMenuItem.Text = "Открыть папку сохранения";
+            открытьМестоХраненияToolStripMenuItem.Click += открытьМестоХраненияToolStripMenuItem_Click;
+            // 
+            // задатьПапкуСохраненияToolStripMenuItem
+            // 
+            задатьПапкуСохраненияToolStripMenuItem.Name = "задатьПапкуСохраненияToolStripMenuItem";
+            задатьПапкуСохраненияToolStripMenuItem.Size = new Size(224, 22);
+            задатьПапкуСохраненияToolStripMenuItem.Text = "Задать папку сохранения";
+            задатьПапкуСохраненияToolStripMenuItem.Click += задатьПапкуСохраненияToolStripMenuItem_Click;
+            // 
+            // добавитьЗаписьToolStripMenuItem
+            // 
+            добавитьЗаписьToolStripMenuItem.Name = "добавитьЗаписьToolStripMenuItem";
+            добавитьЗаписьToolStripMenuItem.Size = new Size(111, 20);
+            добавитьЗаписьToolStripMenuItem.Text = "Добавить запись";
+            добавитьЗаписьToolStripMenuItem.Click += добавитьЗаписьToolStripMenuItem_Click;
+            // 
+            // сгенерироватьXMLToolStripMenuItem
+            // 
+            сгенерироватьXMLToolStripMenuItem.Name = "сгенерироватьXMLToolStripMenuItem";
+            сгенерироватьXMLToolStripMenuItem.Size = new Size(129, 20);
+            сгенерироватьXMLToolStripMenuItem.Text = "Сгенерировать XML";
+            сгенерироватьXMLToolStripMenuItem.Click += сгенерироватьXMLToolStripMenuItem_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(646, 450);
+            ClientSize = new Size(769, 408);
+            Controls.Add(menuStrip1);
             Controls.Add(button2);
             Controls.Add(dataGridView1);
-            Controls.Add(button1);
+            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Button button1;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn N_ZAP;
         private DataGridViewTextBoxColumn PR_NOV;
@@ -173,5 +213,12 @@
         private DataGridViewTextBoxColumn DATE_2;
         private DataGridViewTextBoxColumn USL_OK;
         private Button button2;
+        private FolderBrowserDialog folderBrowserDialog1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem местоХраненияToolStripMenuItem;
+        private ToolStripMenuItem открытьМестоХраненияToolStripMenuItem;
+        private ToolStripMenuItem задатьПапкуСохраненияToolStripMenuItem;
+        private ToolStripMenuItem добавитьЗаписьToolStripMenuItem;
+        private ToolStripMenuItem сгенерироватьXMLToolStripMenuItem;
     }
 }

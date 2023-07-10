@@ -38,17 +38,15 @@ namespace WinFormsApp1
 
             foreach (Control control in flowLayoutPanel1.Controls)
             {
-                if (control is TextBox || control is DateTimePicker)
-                    list_tabPage1.Add(control.Text.ToString().Length == 0 ? "" : control.Text.ToString());
+                list_tabPage1.Add(control.Text.ToString().Length == 0 ? "" : control.Text.ToString());
             }
             Form1.listData_tabPage1.Add(list_tabPage1);
 
-            List<string> list_tabPage2 = new List<string>() { $"{Form1.countPatients}", "0" };
+            List<string> list_tabPage2 = new List<string>();
 
             foreach (Control control in flowLayoutPanel2.Controls)
             {
-                if (control is TextBox || control is DateTimePicker)
-                    list_tabPage2.Add(control.Text.ToString().Length == 0 ? "" : control.Text.ToString());
+                list_tabPage2.Add(control.Text.ToString().Length == 0 ? "" : control.Text.ToString());
             }
             Form1.listData_tabPage2.Add(list_tabPage2);
 
